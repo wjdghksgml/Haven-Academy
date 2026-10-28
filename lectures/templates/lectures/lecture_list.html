@@ -1,0 +1,44 @@
+{% extends 'lectures/base.html' %}
+{% block title %}{{ topic.name }} - Lecture Site{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>{{ topic.name }}</h1>
+        <p class="text-muted mb-0">Available lectures</p>
+    </div>
+
+    <a href="{% url 'topic_list' %}" class="btn btn-outline-secondary">
+        ← Topics
+    </a>
+</div>
+
+<div class="list-group">
+
+    {% for lecture in lectures %}
+
+    <a
+        href="{% url 'lecture_detail' lecture.id %}"
+        class="list-group-item list-group-item-action"
+    >
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ lecture.title }}</h5>
+        </div>
+
+        <p class="mb-1 text-muted">
+            Click to watch this lecture
+        </p>
+    </a>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+        No lectures available for this topic.
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

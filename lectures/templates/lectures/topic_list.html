@@ -1,0 +1,37 @@
+{% extends 'lectures/base.html' %}
+{% block title %}Topics - Lecture Site{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Topics</h1>
+
+<div class="row g-4">
+
+    {% for topic in topics %}
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ topic.name }}</h5>
+
+                <a
+                    href="{% url 'lecture_list' topic.id %}"
+                    class="btn btn-primary"
+                >
+                    View Lectures
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+        No topics available.
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
